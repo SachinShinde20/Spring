@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"> <!-- bean definitions here -->
+
+    <bean id="account" class="bean_Instantiation.complexBean.Account" factory-method="getAccountObject"/>
+
+    <bean id="objectFactory" class="bean_Instantiation.complexBean.ObjectFactory">
+        <property name="account" ref="account"/>
+    </bean>
+
+    <bean id="emp" factory-bean="objectFactory" factory-method="getEmpObject"/>
+
+</beans>
