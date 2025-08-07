@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- ==========================================================
+         1️⃣ Direct map Injection Using <map> Tag
+         ========================================================== -->
+    <bean id="student1" class="collectionInjection.mapInjection.Student">
+        <property name="id" value="101"/>
+        <property name="courses">
+            <map>
+                <entry key="C" value="1000"/>
+                <entry key="C++" value="1500"/>
+                <entry key="Java" value="2000"/>
+                <entry key="Python" value="2500"/>
+                <entry key="go" value="2000"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- ==========================================================
+         2️⃣ Reusing a Predefined map using <util:map>
+         ========================================================== -->
+    <bean id="student2" class="collectionInjection.mapInjection.Student">
+        <property name="id" value="101"/>
+        <property name="courses" ref="map"/>
+    </bean>
+
+    <!-- map bean definition using util namespace -->
+    <!-- "Even though we tell Spring about the java.util.HashMap,
+    the Spring framework's internal bean factory (DefaultListableBeanFactory) will use a LinkedHashMap to store its bean definitions.
+    This is not for your application's benefit, but for Spring's own internal consistency,
+    as HashMap doesn't preserve order and Spring needs a predictable order when managing beans." -->
+    <util:map id="map" map-class="java.util.HashMap">
+        <entry key="Math" value="1000"/>
+        <entry key="Science" value="1500"/>
+        <entry key="English" value="2000"/>
+        <entry key="History" value="2500"/>
+        <entry key="Bio" value="2000"/>
+    </util:map>
+
+    <!-- ==========================================================
+         3️⃣ Injecting map via Constructor of a Java Collection (Vector)
+         ========================================================== -->
+    <bean id="student3" class="collectionInjection.mapInjection.Student">
+        <property name="id" value="101"/>
+        <property name="courses" ref="collectionMap"/>
+    </bean>
+
+    <!-- Bean for collection (Vector) created using constructor-arg -->
+    <bean id="collectionMap" class="java.util.TreeMap">
+        <constructor-arg>
+            <map>
+                <entry key="French" value="1000"/>
+                <entry key="German" value="1500"/>
+                <entry key="Japanese" value="2000"/>
+                <entry key="Korean" value="2500"/>
+                <entry key="Russian" value="2000"/>
+            </map>
+        </constructor-arg>
+    </bean>
+</beans>

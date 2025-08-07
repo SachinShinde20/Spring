@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
+
+    <bean id="emp1" class="constructorInjection.Employee">
+        <constructor-arg value="101"/>
+        <constructor-arg value="Sachin"/>
+        <constructor-arg value="Kolhapur, Maharashtra"/>
+        <constructor-arg value="1122334455"/>
+    </bean>
+
+    <!--    Constructor Ambiguity Solution  -->
+    <bean id="emp2" class="constructorInjection.Employee">
+        <constructor-arg type="int" value="101"/>
+        <constructor-arg type="java.lang.String" value="Sachin"/>
+        <constructor-arg type="java.lang.String" value="Kolhapur, India"/>
+        <constructor-arg type="long" value="1122334455"/>
+    </bean>
+
+    <bean id="emp3" class="constructorInjection.Employee">
+        <constructor-arg index="0" value="101"/>
+        <constructor-arg index="1" value="Sachin"/>
+        <constructor-arg index="2" value="Kolhapur, Earth"/>
+        <constructor-arg index="3" value="1122334455"/>
+    </bean>
+</beans>
