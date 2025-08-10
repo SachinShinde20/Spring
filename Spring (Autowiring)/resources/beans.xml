@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Spring Configuration File
+
+    Default autowiring (setter injection) is set to 'byName'.
+    This means Spring will attempt to inject dependencies into bean properties
+    based on matching the property name with the bean ID.
+-->
+
+<beans default-autowire="byName"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--
+        Bean of class 'Project' with id 'project'.
+        This bean will be injected into any property named 'project' in other beans (via byName autowiring).
+    -->
+    <bean id="project" class="Project">
+        <property name="projectName" value="Messaging App"/>
+        <property name="tech" value="Java"/>
+    </bean>
+
+    <!--
+        Bean of class 'Student' using default autowire="byName".
+        Spring will look for a bean with id 'project' and inject it into the 'project' property.
+    -->
+    <bean id="student" class="Student">
+        <property name="id" value="101"/>
+        <!-- 'project' property will be autowired by matching bean ID -->
+    </bean>
+
+    <!-- ======================================================
+         Additional 'Project' beans to demonstrate autowire="byType" ambiguity.
+
+         If autowire="byType" is used and multiple beans of the same type exist,
+         Spring throws an error due to ambiguity — because all these beans are of type 'Project'.
+
+         To resolve this, we can set one of them as primary (primary="true").
+         ====================================================== -->
+
+    <bean id="project1" class="Project" primary="true">
+        <property name="projectName" value="Resume Builder"/>
+        <property name="tech" value="Python"/>
+    </bean>
+
+    <bean id="project2" class="Project">
+        <property name="projectName" value="Portfolio"/>
+        <property name="tech" value="Python"/>
+    </bean>
+
+    <!--
+        Creating a util:list bean with id 'list'.
+        This will be injected into a constructor argument of type List<String> when required.
+    -->
+    <util:list id="subjects">
+        <value>C</value>
+        <value>C++</value>
+        <value>Java</value>
+        <value>Python</value>
+    </util:list>
+
+    <!--
+        Bean of class 'Student' with autowire="byType".
+        Spring will try to inject a bean of type 'Project'.
+
+        ⚠️ This will cause an ambiguity error if more than one Project bean is found (which is the case here).
+    -->
+    <bean id="student2" class="Student" autowire="byType">
+        <property name="id" value="102"/>
+    </bean>
+
+    <!-- ======================================================
+         Bean of class 'Student' using constructor autowiring.
+
+         Spring will look for a constructor in the 'Student' class that matches the available beans' types.
+         Constructor autowiring uses byType internally.
+
+         In this case, Spring will try to inject:
+         - 'list' bean into List<String> parameter
+         - A suitable 'Project' bean into Project parameter
+
+         ⚠️ Note: If any required bean is missing or mismatched, constructor injection will fail.
+         ====================================================== -->
+
+    <bean id="student3" class="Student" autowire="constructor">
+        <property name="id" value="103"/>
+    </bean>
+
+
+    <!-- byName Default -->
+    <bean id="student4" class="Student">
+        <property name="id" value="104"/>
+    </bean>
+</beans>
