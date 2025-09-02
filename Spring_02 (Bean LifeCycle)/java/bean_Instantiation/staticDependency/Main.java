@@ -1,0 +1,12 @@
+package bean_Instantiation.staticDependency;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean_Instantiation/staticDependency/beans.xml");
+        Emp emp = (Emp) applicationContext.getBean("emp");
+        System.out.println(emp);
+    }
+}
