@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
+
+    <!-- 1 -->
+    <bean id="emp" class="collectionInjection.propertiesInjection.Emp">
+        <property name="id" value="101"/>
+        <property name="dbDetails">
+            <props>
+                <prop key="Database">MySql</prop>
+                <prop key="Url">jdbc:mysql://localhost:3306</prop>
+                <prop key="Username">Admin</prop>
+                <prop key="Password">PassIs123!</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- 2 -->
+    <bean id="employee" class="collectionInjection.propertiesInjection.Emp">
+        <property name="id" value="101"/>
+        <property name="dbDetails" ref="properties"/>
+    </bean>
+    <util:properties id="properties">
+        <prop key="Username">Hello123</prop>
+        <prop key="Password">123Pass</prop>
+    </util:properties>
+</beans>
