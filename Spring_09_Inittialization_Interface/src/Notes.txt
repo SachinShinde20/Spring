@@ -1,0 +1,2 @@
+For Prototype Scope Beans We need to amnually call the Destroy methods,
+pring doesnt automatically call for it.
