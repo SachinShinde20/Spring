@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	default-autowire="byName"
+	xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> 
+        
+<!--	default-autowire="byName"  // set at the top for default beheviour
+	xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">  -->
+
+	<bean id="workHour" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<value>7</value>
+				<value>6</value>
+				<value>4</value>
+				<value>9</value>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="emp1" class="com.main.Employee" autowire="byName">
+		<property name="id" value="101"/>
+	</bean>
+		
+</beans>
