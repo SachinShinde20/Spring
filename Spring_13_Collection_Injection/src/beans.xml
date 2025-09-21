@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
+
+<!-- List 1 -->
+<!--  	<bean id="emp1" class="com.main.Employee">
+		<constructor-arg type="java.util.List">
+			<list>
+				<value>5</value>
+				<value>6</value>
+				<value>7</value>
+				<value>8</value>
+			</list>
+		</constructor-arg>
+	</bean> -->
+	
+	
+	<!-- List 2 -->
+<!-- 	<bean id="emp2" class="com.main.Employee">
+		<constructor-arg index="0" ref="l1"/>
+	</bean>
+	<util:list id="l1" list-class="java.util.Vector">
+		<value>4</value>
+		<value>5</value>
+		<value>6</value>
+		<value>7</value>		
+	</util:list> -->
+	
+	<!-- list 3 -->
+	<bean id="emp3" class="com.main.Employee">
+		<constructor-arg index="0" ref="l2"/>
+	</bean>
+	
+	<bean id="l2" class="java.util.LinkedList">
+		<constructor-arg>
+			<list>
+				<value>7</value>
+				<value>8</value>
+				<value>9</value>
+				<value>10</value>
+			</list>
+		</constructor-arg>
+	</bean>
+	
+</beans>
