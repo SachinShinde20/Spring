@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
+
+	<bean id="emp1" class="com.main.Emp">
+		<constructor-arg index="0" value="101"/>
+		<constructor-arg index="1" value="Atharv 2"/>
+		<constructor-arg index="2" value="Pune"/>		
+	</bean>
+	
+	<bean id="emp2" class="com.main.Emp">
+		<property name="id" value="102"/>
+		<property name="name" value="Sachin 2"/>
+		<property name="city" value="Kolhapur"/>
+	</bean>
+	
+	<bean id="emp3" class="com.main.Emp" lazy-init="true">
+		<constructor-arg index="0" value="101"/>
+		<constructor-arg index="1" value="Atharv 2"/>
+		<constructor-arg index="2" value="Pune"/>		
+	</bean>
+	
+	<bean id="emp4" class="com.main.Emp" lazy-init="true">
+		<property name="id" value="102"/>
+		<property name="name" value="Sachin 2"/>
+		<property name="city" value="Kolhapur"/>
+	</bean>
+</beans>
