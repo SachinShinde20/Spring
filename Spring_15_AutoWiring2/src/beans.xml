@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
+
+	<bean id="workHour" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<value>7</value>
+				<value>6</value>
+				<value>5</value>
+				<value>4</value>
+			</list>
+		</constructor-arg>
+	</bean>
+	
+		<!-- We need to set primary="true" if we have multiple beans with same type-->
+	<bean id="workHour2" class="java.util.ArrayList" primary="true">
+		<constructor-arg>
+			<list>
+				<value>2</value>
+				<value>3</value>
+				<value>4</value>
+				<value>5</value>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="emp1" class="com.main.Employee" autowire="byType">
+		<property name="id" value="101"/>
+	</bean>
+		
+</beans>
